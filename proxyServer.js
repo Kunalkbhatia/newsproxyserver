@@ -1,10 +1,13 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors'); // Import CORS middleware
 const app = express();
 
+// Use CORS middleware
+app.use(cors());
 
 app.get('/news', async (req, res) => {
-  const { q, page, category,apiKey } = req.query;
+  const { q, page, category, apiKey } = req.query;
   try {
     const response = await axios.get('https://newsapi.org/v2/top-headlines', {
       params: {
@@ -15,7 +18,7 @@ app.get('/news', async (req, res) => {
         apiKey,
       },
     });
-    res.json(response);
+    res.json(response.data); // Send response data instead of entire response object
   } catch (error) {
     res.status(500).json({ error: 'Error fetching news' });
   }
