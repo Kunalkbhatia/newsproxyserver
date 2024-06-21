@@ -1,7 +1,7 @@
 {
     "version": 2,
     "name": "project_deployment",
-    "build": [
+    "builds": [
       { "src": "proxyServer.js", "use": "@vercel/node" }
     ],
     "routes": [
